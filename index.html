@@ -754,6 +754,12 @@
       white-space: nowrap;
     }
     .demo-tour-btn:hover { background: var(--accent-grad); color: #fff; }
+    .demo-tour-btn.active {
+      background: var(--accent-grad);
+      border-color: rgba(45,140,183,0.5);
+      color: #fff;
+      box-shadow: 0 8px 22px rgba(22,72,159,0.18);
+    }
     @keyframes tourPulse {
       0%,100% { box-shadow: 0 0 0 0 rgba(12,166,137,0); }
       50% { box-shadow: 0 0 0 7px rgba(45,140,183,0.16); }
@@ -1287,7 +1293,7 @@
 
     <!-- Module nav pills -->
     <div class="demo-nav reveal">
-      <div class="demo-tour-btn" onclick="startDemoTour()">▶ Guided Tour</div>
+      <div class="demo-tour-btn" id="demo-tour-btn" onclick="startDemoTour()">▶ Guided Tour</div>
       <div class="demo-nav-pill active" onclick="demoNav(this,'dashboard')">Dashboard</div>
       <div class="demo-nav-pill" onclick="demoNav(this,'bv')">Benefits Verification</div>
       <div class="demo-nav-pill" onclick="demoNav(this,'orders')">Order Management</div>
@@ -1629,14 +1635,28 @@
     return frame;
   }
 
+  function setDemoTourActive(active) {
+    const tourBtn = document.getElementById('demo-tour-btn');
+    const navPills = document.querySelectorAll('.demo-nav-pill');
+    if (tourBtn) {
+      tourBtn.classList.toggle('active', active);
+    }
+    navPills.forEach(pill => pill.classList.toggle('active', !active && pill.classList.contains('active')));
+    if (active) {
+      navPills.forEach(pill => pill.classList.remove('active'));
+    }
+  }
+
   function stopPlatformTour() {
     const frame = ensurePlatformFrameLoaded();
+    setDemoTourActive(false);
     if (frame && frame.contentWindow) {
       try { frame.contentWindow.endTour(); } catch(e) {}
     }
   }
 
   function startDemoTour() {
+    setDemoTourActive(true);
     const frame = ensurePlatformFrameLoaded();
     if (frame && frame.contentWindow) {
       try { frame.contentWindow.startTour(); } catch(e) { console.warn('Tour:', e); }
@@ -1738,6 +1758,7 @@
   // ── DEMO PLATFORM NAV ──
   function demoNav(pill, screen) {
     document.querySelectorAll('.demo-nav-pill').forEach(p => p.classList.remove('active'));
+    setDemoTourActive(false);
     pill.classList.add('active');
     stopPlatformTour();
     const frame = ensurePlatformFrameLoaded();
