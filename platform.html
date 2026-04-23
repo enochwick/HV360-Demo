@@ -2075,10 +2075,10 @@ document.addEventListener('click', e => {
 });
 
 try {
-  const savedTheme = localStorage.getItem('hv360-theme') || 'light';
+  const savedTheme = localStorage.getItem('hv360-theme') || 'dark';
   applyTheme(savedTheme);
 } catch (e) {
-  applyTheme('light');
+  applyTheme('dark');
 }
 
 // expose navigate for iframe parent control
