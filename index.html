@@ -758,38 +758,273 @@
       0%,100% { box-shadow: 0 0 0 0 rgba(12,166,137,0); }
       50% { box-shadow: 0 0 0 7px rgba(45,140,183,0.16); }
     }
-    @media (max-width: 1000px) {
+    @media (hover: none), (pointer: coarse) {
+      body { cursor: auto; }
+      #cursor-dot, #cursor-ring { display: none; }
+      .btn-primary, .btn-ghost, .video-card, .nav-cta { cursor: pointer; }
+    }
+
+    @media (max-width: 1100px) {
+      .container { padding: 0 24px; }
+      .hero { min-height: auto; padding: 112px 24px 64px; }
+      .hero-logo { margin-bottom: 22px; }
+      .hero h1 { max-width: 900px; }
+      .hero-sub { max-width: 760px; }
+      .hero-dashboard { max-width: 100%; }
+      .problem-section,
+      .features-section,
+      .roles-section,
+      .steps-section,
+      .stats-section,
+      .testimonials-section,
+      .demo-section,
+      .cta-section { padding: 96px 0; }
       .demo-section .container { max-width: 100%; }
       .ipad-scene { max-width: 100%; }
       .ipad-device { width: min(960px, calc(100vw - 56px)); padding-top: 58px; }
       .frame-header { padding: 0 24px; }
       .frame-title { font-size: 15px; }
+      .video-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
+
+    @media (max-width: 900px) {
+      nav { width: calc(100% - 28px); top: 14px; }
+      .nav-inner {
+        padding: 12px 14px;
+        border-radius: 22px;
+        justify-content: center;
+      }
+      .nav-logo,
+      .nav-links { display: none; }
+      .nav-cta {
+        width: 100%;
+        text-align: center;
+        padding: 12px 20px;
+      }
+      .hero {
+        padding: 104px 20px 54px;
+      }
+      .hero-orbit {
+        top: 82%;
+        width: clamp(760px, 145vw, 1180px);
+      }
+      .hero-logo { width: clamp(150px, 28vw, 220px); }
+      .hero h1 {
+        font-size: clamp(32px, 8vw, 52px);
+        line-height: 1.04;
+        margin-bottom: 16px;
+      }
+      .hero-sub {
+        font-size: 17px;
+        max-width: 100%;
+        margin-bottom: 24px;
+      }
+      .hero-actions {
+        width: 100%;
+        gap: 12px;
+        margin-bottom: 30px;
+      }
+      .btn-primary,
+      .btn-ghost {
+        padding: 14px 24px;
+      }
+      .hero-dashboard { border-radius: 18px; }
+      .dash-body { grid-template-columns: 1fr; }
+      .dash-left,
+      .dash-right { padding: 18px; }
+      .dash-left { border-right: none; border-bottom: 1px solid var(--border-2); }
+      .metric-cards { grid-template-columns: 1fr 1fr; }
+      .problem-grid { grid-template-columns: 1fr; gap: 16px; margin-bottom: 40px; }
+      .bento-grid { grid-template-columns: 1fr; }
+      .bento-card.bento-wide,
+      .bento-card.bento-tall { grid-column: span 1; grid-row: span 1; }
+      .roles-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .steps-row { grid-template-columns: 1fr; gap: 24px; }
+      .steps-row::before { display: none; }
+      .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+      .float-card { display: none; }
+      .demo-section-header { margin-bottom: 40px; }
+      .demo-nav {
+        gap: 10px;
+        margin-bottom: 18px;
+      }
+      .demo-nav-pill,
+      .demo-tour-btn {
+        padding: 9px 14px;
+        font-size: 13px;
+      }
+      .video-grid { grid-template-columns: 1fr 1fr; }
+      .video-modal { padding: 18px; }
+    }
+
     @media (max-width: 750px) {
-      .ipad-device { width: calc(100vw - 32px); padding: 58px 12px 12px; border-radius: 24px; }
+      .container { padding: 0 18px; }
+      .hero {
+        padding: 96px 16px 42px;
+      }
+      .hero-badge {
+        padding: 6px 12px;
+        font-size: 11px;
+        margin-bottom: 22px;
+      }
+      .hero h1 {
+        font-size: clamp(29px, 9vw, 42px);
+        letter-spacing: -0.03em;
+      }
+      .hero-sub {
+        font-size: 16px;
+        line-height: 1.65;
+      }
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+        max-width: 320px;
+      }
+      .btn-primary,
+      .btn-ghost {
+        width: 100%;
+      }
+      .hero-dashboard {
+        border-radius: 16px;
+      }
+      .dash-header {
+        padding: 12px 14px;
+      }
+      .dash-title { font-size: 11px; }
+      .dash-left,
+      .dash-right { padding: 14px; }
+      .metric-cards { grid-template-columns: 1fr; }
+      .chart-bars { height: 52px; }
+      .section-h2 {
+        font-size: clamp(28px, 9vw, 40px);
+        margin-bottom: 16px;
+      }
+      .section-desc {
+        font-size: 17px;
+        margin-bottom: 34px;
+      }
+      .problem-card,
+      .bento-card,
+      .role-card,
+      .testimonial-card,
+      .stats-wrap { padding: 22px 20px; }
+      .roles-grid,
+      .stats-grid,
+      .footer-grid,
+      .video-grid { grid-template-columns: 1fr; }
+      .steps-section .container,
+      .demo-section-header,
+      .demo-section-header p { text-align: center; }
+      .ipad-device { width: calc(100vw - 24px); padding: 58px 10px 10px; border-radius: 22px; }
       .ipad-screen { border-radius: 10px; }
-      .frame-header { height: 54px; }
+      .frame-header { height: 54px; padding: 0 14px; }
       .frame-controls { gap: 8px; }
       .frame-dot { width: 11px; height: 11px; }
       .frame-title { display: none; }
       .frame-live { font-size: 11px; gap: 7px; }
+      .demo-nav {
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 6px;
+        scrollbar-width: none;
+      }
+      .demo-nav::-webkit-scrollbar { display: none; }
+      .demo-nav-pill,
+      .demo-tour-btn {
+        flex: 0 0 auto;
+        white-space: nowrap;
+      }
+      .video-modal-panel {
+        width: min(100%, 94vw);
+        border-radius: 18px;
+      }
+      .video-modal-top {
+        padding: 14px 14px;
+      }
+      .video-modal-title {
+        font-size: 14px;
+      }
+      .problem-section,
+      .features-section,
+      .roles-section,
+      .steps-section,
+      .stats-section,
+      .testimonials-section,
+      .demo-section,
+      .cta-section { padding: 76px 0; }
+      .cta-section p {
+        font-size: 16px;
+        margin-bottom: 30px;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+      }
     }
 
-    @media (max-width: 900px) {
-      .bento-grid { grid-template-columns: 1fr; }
-      .bento-card.bento-wide { grid-column: span 1; }
-      .roles-grid { grid-template-columns: repeat(2, 1fr); }
-      .problem-grid { grid-template-columns: 1fr; }
-      .steps-row { grid-template-columns: 1fr; gap: 24px; }
-      .steps-row::before { display: none; }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
-      .dash-body { grid-template-columns: 1fr; }
-      .float-card { display: none; }
-      .video-grid { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 640px) {
-      .video-grid { grid-template-columns: 1fr; }
+    @media (max-width: 480px) {
+      .hero-logo {
+        width: 150px;
+        margin-bottom: 18px;
+      }
+      .hero-orbit {
+        top: 86%;
+        width: 920px;
+      }
+      .hero h1 {
+        font-size: 28px;
+      }
+      .hero-sub,
+      .section-desc,
+      .demo-section-header p,
+      .cta-section p {
+        font-size: 15px;
+      }
+      .dash-header,
+      .dash-left,
+      .dash-right {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+      .bv-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+      .problem-card,
+      .bento-card,
+      .role-card,
+      .stats-wrap,
+      .testimonial-card {
+        border-radius: 16px;
+      }
+      .section-eyebrow {
+        font-size: 10px;
+      }
+      .bento-h,
+      .video-title {
+        font-size: 17px;
+      }
+      .step-num {
+        width: 52px;
+        height: 52px;
+      }
+      .cta-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .cta-actions .btn-primary,
+      .cta-actions .btn-ghost {
+        width: 100%;
+      }
+      .video-play {
+        inset: auto auto 10px 10px;
+        font-size: 11px;
+        padding: 7px 10px;
+      }
     }
   </style>
 </head>
