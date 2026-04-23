@@ -859,6 +859,10 @@
     }
 
     @media (max-width: 750px) {
+      body::before { display: none; }
+      .aurora-wrap,
+      .hero-orbit,
+      .ipad-glow { display: none; }
       .container { padding: 0 18px; }
       .hero {
         padding: 96px 16px 42px;
@@ -887,6 +891,8 @@
       }
       .hero-dashboard {
         border-radius: 16px;
+        backdrop-filter: none;
+        box-shadow: 0 22px 54px rgba(0,0,0,0.52);
       }
       .dash-header {
         padding: 12px 14px;
@@ -1054,10 +1060,6 @@
         width: 150px;
         margin-bottom: 18px;
       }
-      .hero-orbit {
-        top: 86%;
-        width: 920px;
-      }
       .hero h1 {
         font-size: 28px;
       }
@@ -1146,9 +1148,9 @@
 
 <!-- HERO -->
 <section class="hero">
-  <img class="hero-orbit reveal" id="hero-asset" src=".claude/brand_assets/HV360%20Asset.png" alt="" aria-hidden="true">
+    <img class="hero-orbit reveal" id="hero-asset" src=".claude/brand_assets/HV360%20Asset.png" alt="" aria-hidden="true" decoding="async">
   <div class="container" style="display:flex;flex-direction:column;align-items:center;">
-    <img class="hero-logo reveal" src="assets/brand/healthview360-white-logo.png" alt="Healthview 360">
+    <img class="hero-logo reveal" src="assets/brand/healthview360-white-logo.png" alt="Healthview 360" decoding="async" fetchpriority="high">
     <div class="hero-badge reveal">
       <span class="hero-badge-dot"></span>
       Introducing the All-New Healthview 360™
@@ -1299,7 +1301,7 @@
             <div class="frame-live">Live</div>
           </div>
           <div class="ipad-screen">
-            <iframe id="platform-frame" src="platform.html" scrolling="no" title="Healthview 360 Platform Demo"></iframe>
+            <iframe id="platform-frame" data-src="platform.html" scrolling="no" title="Healthview 360 Platform Demo" loading="lazy"></iframe>
           </div>
         </div>
       </div>
@@ -1466,7 +1468,7 @@
     <div class="video-grid">
       <button class="video-card reveal reveal-delay-1" onclick="playWalkthrough('bv-order')">
         <div class="video-thumb">
-          <img src="Healthview360 Platform Screenshots /Benefits Verification Actions.png" alt="BV Status, IVR and Placing an Order walkthrough">
+          <img src="Healthview360 Platform Screenshots /Benefits Verification Actions.png" alt="BV Status, IVR and Placing an Order walkthrough" loading="lazy" decoding="async">
           <span class="video-play">▶ Play</span>
         </div>
         <div class="video-body">
@@ -1476,7 +1478,7 @@
       </button>
       <button class="video-card reveal reveal-delay-2" onclick="playWalkthrough('profile')">
         <div class="video-thumb">
-          <img src="Healthview360 Platform Screenshots /My Profile.png" alt="Profile, Settings, Preferences walkthrough">
+          <img src="Healthview360 Platform Screenshots /My Profile.png" alt="Profile, Settings, Preferences walkthrough" loading="lazy" decoding="async">
           <span class="video-play">▶ Play</span>
         </div>
         <div class="video-body">
@@ -1486,7 +1488,7 @@
       </button>
       <button class="video-card reveal reveal-delay-3" onclick="playWalkthrough('submit-bv')">
         <div class="video-thumb">
-          <img src="Healthview360 Platform Screenshots /New Benefits Verification Step 01.png" alt="Submitting for Benefit Verification walkthrough">
+          <img src="Healthview360 Platform Screenshots /New Benefits Verification Step 01.png" alt="Submitting for Benefit Verification walkthrough" loading="lazy" decoding="async">
           <span class="video-play">▶ Play</span>
         </div>
         <div class="video-body">
@@ -1496,7 +1498,7 @@
       </button>
       <button class="video-card reveal reveal-delay-4" onclick="playWalkthrough('invoices')">
         <div class="video-thumb">
-          <img src="Healthview360 Platform Screenshots /Open Invoices.png" alt="Viewing and Paying Invoices walkthrough">
+          <img src="Healthview360 Platform Screenshots /Open Invoices.png" alt="Viewing and Paying Invoices walkthrough" loading="lazy" decoding="async">
           <span class="video-play">▶ Play</span>
         </div>
         <div class="video-body">
@@ -1611,15 +1613,25 @@
   document.querySelectorAll('[data-target]').forEach(el => counterObserver.observe(el));
 
   // ── DEMO GUIDED TOUR ──
-  function stopPlatformTour() {
+  function ensurePlatformFrameLoaded() {
     const frame = document.getElementById('platform-frame');
+    if (!frame) return null;
+    if (!frame.getAttribute('src')) {
+      const src = frame.dataset.src;
+      if (src) frame.setAttribute('src', src);
+    }
+    return frame;
+  }
+
+  function stopPlatformTour() {
+    const frame = ensurePlatformFrameLoaded();
     if (frame && frame.contentWindow) {
       try { frame.contentWindow.endTour(); } catch(e) {}
     }
   }
 
   function startDemoTour() {
-    const frame = document.getElementById('platform-frame');
+    const frame = ensurePlatformFrameLoaded();
     if (frame && frame.contentWindow) {
       try { frame.contentWindow.startTour(); } catch(e) { console.warn('Tour:', e); }
     }
@@ -1648,7 +1660,7 @@
       openVideoModal(videos[type]);
       return;
     }
-    const frame = document.getElementById('platform-frame');
+    const frame = ensurePlatformFrameLoaded();
     if (!frame || !frame.contentWindow) return;
     try {
       if (type === 'bv-order') {
@@ -1722,12 +1734,41 @@
     document.querySelectorAll('.demo-nav-pill').forEach(p => p.classList.remove('active'));
     pill.classList.add('active');
     stopPlatformTour();
-    const frame = document.getElementById('platform-frame');
+    const frame = ensurePlatformFrameLoaded();
     if (frame && frame.contentWindow) {
       try { frame.contentWindow.navigate(screen); } catch(e) {}
     }
   }
 
+  function initPlatformFrameLoading() {
+    const frame = document.getElementById('platform-frame');
+    if (!frame) return;
+    const scene = frame.closest('.ipad-scene') || frame;
+    const loadFrame = () => {
+      const loadedFrame = ensurePlatformFrameLoaded();
+      if (loadedFrame) {
+        if (!loadedFrame.dataset.fitBound) {
+          loadedFrame.addEventListener('load', fitPlatformFrame, { once: true });
+          loadedFrame.dataset.fitBound = 'true';
+        }
+      }
+    };
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            loadFrame();
+            observer.disconnect();
+          }
+        });
+      }, { rootMargin: '240px 0px' });
+      observer.observe(scene);
+    } else {
+      loadFrame();
+    }
+  }
+
+  initPlatformFrameLoading();
   window.addEventListener('load', fitPlatformFrame);
   window.addEventListener('resize', fitPlatformFrame);
 
