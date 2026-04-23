@@ -911,8 +911,7 @@
       .stats-wrap { padding: 22px 20px; }
       .roles-grid,
       .stats-grid,
-      .footer-grid,
-      .video-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
       .steps-section .container,
       .demo-section-header,
       .demo-section-header p { text-align: center; }
@@ -935,6 +934,23 @@
       .demo-tour-btn {
         flex: 0 0 auto;
         white-space: nowrap;
+      }
+      .video-grid {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: minmax(280px, 84%);
+        grid-template-columns: none;
+        gap: 14px;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x mandatory;
+        padding: 4px 2px 8px;
+        scrollbar-width: none;
+      }
+      .video-grid::-webkit-scrollbar { display: none; }
+      .video-card {
+        scroll-snap-align: start;
+        min-width: 0;
       }
       .video-modal-panel {
         width: min(100%, 94vw);
@@ -1024,6 +1040,9 @@
         inset: auto auto 10px 10px;
         font-size: 11px;
         padding: 7px 10px;
+      }
+      .video-grid {
+        grid-auto-columns: 90%;
       }
     }
   </style>
