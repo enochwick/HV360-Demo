@@ -902,6 +902,10 @@
       .dash-right { padding: 14px; }
       .metric-cards { grid-template-columns: 1fr; }
       .chart-bars { height: 52px; }
+      .bv-queue-block { display: none; }
+      .dash-left {
+        border-bottom: none;
+      }
       .section-h2 {
         font-size: clamp(28px, 9vw, 40px);
         margin-bottom: 16px;
@@ -1178,23 +1182,25 @@
       </div>
       <div class="dash-body">
         <div class="dash-left">
-          <div class="dash-section-label">BV Status Queue</div>
-          <div class="bv-queue">
-            <div class="bv-item">
-              <div><div class="bv-patient">J. Martinez</div><div class="bv-insurer">BlueCross • Wound Care</div></div>
-              <span class="bv-badge bv-approved">Approved</span>
-            </div>
-            <div class="bv-item">
-              <div><div class="bv-patient">S. Thompson</div><div class="bv-insurer">Aetna • Skin Substitute</div></div>
-              <span class="bv-badge bv-pending">Pending</span>
-            </div>
-            <div class="bv-item">
-              <div><div class="bv-patient">R. Patel</div><div class="bv-insurer">UnitedHealth • OASIS</div></div>
-              <span class="bv-badge bv-review">In Review</span>
-            </div>
-            <div class="bv-item">
-              <div><div class="bv-patient">D. Williams</div><div class="bv-insurer">Humana • Compression</div></div>
-              <span class="bv-badge bv-approved">Approved</span>
+          <div class="bv-queue-block">
+            <div class="dash-section-label">BV Status Queue</div>
+            <div class="bv-queue">
+              <div class="bv-item">
+                <div><div class="bv-patient">J. Martinez</div><div class="bv-insurer">BlueCross • Wound Care</div></div>
+                <span class="bv-badge bv-approved">Approved</span>
+              </div>
+              <div class="bv-item">
+                <div><div class="bv-patient">S. Thompson</div><div class="bv-insurer">Aetna • Skin Substitute</div></div>
+                <span class="bv-badge bv-pending">Pending</span>
+              </div>
+              <div class="bv-item">
+                <div><div class="bv-patient">R. Patel</div><div class="bv-insurer">UnitedHealth • OASIS</div></div>
+                <span class="bv-badge bv-review">In Review</span>
+              </div>
+              <div class="bv-item">
+                <div><div class="bv-patient">D. Williams</div><div class="bv-insurer">Humana • Compression</div></div>
+                <span class="bv-badge bv-approved">Approved</span>
+              </div>
             </div>
           </div>
           <div class="dash-section-label">Weekly Orders</div>
