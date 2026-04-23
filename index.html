@@ -940,12 +940,31 @@
       .stats-grid,
       .video-grid {
         display: grid;
-        grid-template-columns: 1fr;
+        grid-auto-flow: column;
+        grid-template-columns: none;
         gap: 14px;
-        overflow: visible;
-        padding: 0;
+        overflow-x: auto;
+        overflow-y: hidden;
+        overscroll-behavior-x: contain;
+        overscroll-behavior-y: none;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        touch-action: pan-x;
+        padding: 4px 2px 8px;
+        scrollbar-width: none;
       }
-      .problem-grid { margin-bottom: 34px; }
+      .problem-grid { grid-auto-columns: minmax(280px, 88%); margin-bottom: 34px; }
+      .bento-grid { grid-auto-columns: minmax(300px, 90%); }
+      .roles-grid { grid-auto-columns: minmax(240px, 82%); }
+      .steps-row { grid-auto-columns: minmax(250px, 84%); }
+      .stats-grid { grid-auto-columns: minmax(220px, 72%); }
+      .video-grid { grid-auto-columns: minmax(280px, 84%); }
+      .problem-grid::-webkit-scrollbar,
+      .bento-grid::-webkit-scrollbar,
+      .roles-grid::-webkit-scrollbar,
+      .steps-row::-webkit-scrollbar,
+      .stats-grid::-webkit-scrollbar,
+      .video-grid::-webkit-scrollbar { display: none; }
       .problem-card {
         min-height: 220px;
       }
@@ -968,6 +987,15 @@
         min-height: 100%;
         display: flex;
         flex-direction: column;
+      }
+      .problem-card,
+      .bento-card,
+      .role-card,
+      .step-item,
+      .stat-item,
+      .video-card {
+        scroll-snap-align: start;
+        min-width: 0;
       }
       .bento-card.bento-wide,
       .bento-card.bento-tall {
@@ -1095,6 +1123,12 @@
       .stat-item {
         min-height: 170px;
       }
+      .problem-grid { grid-auto-columns: 92%; }
+      .bento-grid { grid-auto-columns: 92%; }
+      .roles-grid { grid-auto-columns: 88%; }
+      .steps-row { grid-auto-columns: 88%; }
+      .stats-grid { grid-auto-columns: 82%; }
+      .video-grid { grid-auto-columns: 90%; }
     }
   </style>
 </head>
