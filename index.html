@@ -909,8 +909,6 @@
       .role-card,
       .testimonial-card,
       .stats-wrap { padding: 22px 20px; }
-      .roles-grid,
-      .stats-grid,
       .footer-grid { grid-template-columns: 1fr; }
       .steps-section .container,
       .demo-section-header,
@@ -935,10 +933,14 @@
         flex: 0 0 auto;
         white-space: nowrap;
       }
+      .problem-grid,
+      .bento-grid,
+      .roles-grid,
+      .steps-row,
+      .stats-grid,
       .video-grid {
         display: grid;
         grid-auto-flow: column;
-        grid-auto-columns: minmax(280px, 84%);
         grid-template-columns: none;
         gap: 14px;
         overflow-x: auto;
@@ -947,10 +949,49 @@
         padding: 4px 2px 8px;
         scrollbar-width: none;
       }
+      .problem-grid { grid-auto-columns: minmax(280px, 88%); margin-bottom: 34px; }
+      .bento-grid { grid-auto-columns: minmax(300px, 90%); }
+      .roles-grid { grid-auto-columns: minmax(240px, 82%); }
+      .steps-row { grid-auto-columns: minmax(250px, 84%); }
+      .stats-grid { grid-auto-columns: minmax(220px, 72%); }
+      .video-grid { grid-auto-columns: minmax(280px, 84%); }
+      .problem-grid::-webkit-scrollbar,
+      .bento-grid::-webkit-scrollbar,
+      .roles-grid::-webkit-scrollbar,
+      .steps-row::-webkit-scrollbar,
+      .stats-grid::-webkit-scrollbar,
       .video-grid::-webkit-scrollbar { display: none; }
+      .problem-card,
+      .bento-card,
+      .role-card,
+      .step-item,
+      .stat-item,
       .video-card {
         scroll-snap-align: start;
         min-width: 0;
+      }
+      .bento-card.bento-wide,
+      .bento-card.bento-tall {
+        grid-column: auto;
+        grid-row: auto;
+      }
+      .steps-row::before { display: none; }
+      .step-item {
+        background: var(--surface);
+        border: 1px solid var(--border-2);
+        border-radius: 16px;
+        padding: 24px 20px;
+      }
+      .stats-wrap {
+        padding: 0;
+        background: transparent;
+        border: none;
+      }
+      .stat-item {
+        background: linear-gradient(135deg, rgba(22,72,159,0.10) 0%, rgba(12,166,137,0.08) 100%);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        padding: 24px 18px;
       }
       .video-modal-panel {
         width: min(100%, 94vw);
@@ -1041,9 +1082,12 @@
         font-size: 11px;
         padding: 7px 10px;
       }
-      .video-grid {
-        grid-auto-columns: 90%;
-      }
+      .problem-grid { grid-auto-columns: 92%; }
+      .bento-grid { grid-auto-columns: 92%; }
+      .roles-grid { grid-auto-columns: 88%; }
+      .steps-row { grid-auto-columns: 88%; }
+      .stats-grid { grid-auto-columns: 82%; }
+      .video-grid { grid-auto-columns: 90%; }
     }
   </style>
 </head>
