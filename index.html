@@ -948,17 +948,18 @@
         overscroll-behavior-x: contain;
         overscroll-behavior-y: none;
         scroll-snap-type: x mandatory;
+        scroll-padding-left: 2px;
         -webkit-overflow-scrolling: touch;
         touch-action: pan-x;
-        padding: 4px 2px 8px;
+        padding: 4px 18px 8px 2px;
         scrollbar-width: none;
       }
-      .problem-grid { grid-auto-columns: minmax(280px, 88%); margin-bottom: 34px; }
-      .bento-grid { grid-auto-columns: minmax(300px, 90%); }
-      .roles-grid { grid-auto-columns: minmax(240px, 82%); }
-      .steps-row { grid-auto-columns: minmax(250px, 84%); }
-      .stats-grid { grid-auto-columns: minmax(220px, 72%); }
-      .video-grid { grid-auto-columns: minmax(280px, 84%); }
+      .problem-grid { grid-auto-columns: minmax(280px, 84%); margin-bottom: 34px; }
+      .bento-grid { grid-auto-columns: minmax(280px, 84%); }
+      .roles-grid { grid-auto-columns: minmax(240px, 80%); }
+      .steps-row { grid-auto-columns: minmax(250px, 82%); }
+      .stats-grid { grid-auto-columns: minmax(220px, 68%); }
+      .video-grid { grid-auto-columns: minmax(280px, 82%); }
       .problem-grid::-webkit-scrollbar,
       .bento-grid::-webkit-scrollbar,
       .roles-grid::-webkit-scrollbar,
@@ -1122,12 +1123,12 @@
       .stat-item {
         min-height: 170px;
       }
-      .problem-grid { grid-auto-columns: 92%; }
-      .bento-grid { grid-auto-columns: 92%; }
-      .roles-grid { grid-auto-columns: 88%; }
-      .steps-row { grid-auto-columns: 88%; }
-      .stats-grid { grid-auto-columns: 82%; }
-      .video-grid { grid-auto-columns: 90%; }
+      .problem-grid { grid-auto-columns: 86%; }
+      .bento-grid { grid-auto-columns: 86%; }
+      .roles-grid { grid-auto-columns: 84%; }
+      .steps-row { grid-auto-columns: 84%; }
+      .stats-grid { grid-auto-columns: 76%; }
+      .video-grid { grid-auto-columns: 86%; }
     }
   </style>
 </head>
