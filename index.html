@@ -374,11 +374,6 @@
     .problem-title { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
     .problem-body { font-size: 14px; color: var(--text-2); line-height: 1.6; }
 
-    .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; border: 1px solid var(--border-2); border-radius: var(--radius); overflow: hidden; }
-    .stat-block { padding: 36px 32px; background: var(--surface); text-align: center; border-right: 1px solid var(--border-2); }
-    .stat-block:last-child { border-right: none; }
-    .stat-num { font-size: clamp(42px, 5vw, 64px); font-weight: 800; letter-spacing: -0.04em; color: #63d9c2; line-height: 1; margin-bottom: 8px; }
-    .stat-desc { font-size: 14px; color: var(--text-2); line-height: 1.5; font-weight: 500; }
 
     /* ── FEATURES SECTION ── */
     .features-section { padding: 120px 0; position: relative; z-index: 1; }
@@ -785,7 +780,6 @@
       .bento-card.bento-wide { grid-column: span 1; }
       .roles-grid { grid-template-columns: repeat(2, 1fr); }
       .problem-grid { grid-template-columns: 1fr; }
-      .stat-row { grid-template-columns: 1fr; }
       .steps-row { grid-template-columns: 1fr; gap: 24px; }
       .steps-row::before { display: none; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1005,20 +999,6 @@
       </div>
     </div>
 
-    <div class="stat-row reveal">
-      <div class="stat-block">
-        <div class="stat-num">1</div>
-        <div class="stat-desc">integrated platform for benefits verification, supply chain management, and analytics</div>
-      </div>
-      <div class="stat-block">
-        <div style="font-size:clamp(42px,5vw,64px);font-weight:800;color:var(--teal);line-height:1;margin-bottom:8px;">3</div>
-        <div class="stat-desc">core pillars unified into one workflow: benefits verification, supply chain, and analytics</div>
-      </div>
-      <div class="stat-block">
-        <div style="font-size:clamp(42px,5vw,64px);font-weight:800;color:var(--teal);line-height:1;margin-bottom:8px;">$0</div>
-        <div class="stat-desc">additional software cost to qualified providers using the Healthview 360™ platform</div>
-      </div>
-    </div>
   </div>
 </section>
 
